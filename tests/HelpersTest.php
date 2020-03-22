@@ -29,4 +29,20 @@ class HelpersTest extends TestCase
 
         self::assertFalse(Str::contains(l5_swagger_asset('swagger-ui.css'), 'https'));
     }
+
+    /** @test */
+    public function assertFunctionReturnsHttpsUrlForDocsWhenSecureAssetsIsTrue(): void
+    {
+        Config::set('l5-swagger.paths.secure_assets', true);
+
+        self::assertTrue(Str::contains(l5_swagger_docs(), 'https'));
+    }
+
+    /** @test */
+    public function assertFunctionReturnsHttpUrlForDocsWhenSecureAssetsIsFalse(): void
+    {
+        Config::set('l5-swagger.paths.secure_assets', false);
+
+        self::assertTrue(Str::contains(l5_swagger_docs(), 'http'));
+    }
 }
