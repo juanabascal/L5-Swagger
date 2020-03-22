@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\URL;
 use L5Swagger\Exceptions\L5SwaggerException;
 
 if (! function_exists('swagger_ui_dist_path')) {
@@ -65,5 +66,23 @@ if (! function_exists('l5_swagger_asset')) {
         }
 
         return $route;
+    }
+}
+
+if (! function_exists('l5_swagger_docs')) {
+    /**
+     * Returns the url for the swagger parsed documents.
+     *
+     * @param $asset string
+     *
+     * @return string
+     */
+    function l5_swagger_docs()
+    {
+        if (config('l5-swagger.paths.secure_assets')) {
+            URL::forceScheme('https');
+        }
+
+        return route('l5-swagger.docs', config('7', 'api-docs.json'));
     }
 }
