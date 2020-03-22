@@ -60,12 +60,10 @@ if (! function_exists('l5_swagger_asset')) {
         }
 
         if (config('l5-swagger.paths.secure_assets')) {
-            $route = secure_url('l5-swagger.asset', $asset).'?v='.md5_file($file);
-        } else {
-            $route = url('l5-swagger.asset', $asset).'?v='.md5_file($file);
+            URL::forceScheme('https');
         }
 
-        return $route;
+        return route('l5-swagger.asset', $asset).'?v='.md5_file($file);
     }
 }
 
