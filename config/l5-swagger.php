@@ -105,6 +105,15 @@ return [
         */
 
         'excludes' => [],
+
+        /*
+        |--------------------------------------------------------------------------
+        | If set to true, the resource urls on index.blade.php will be generated
+        | with the https protocol.
+        |--------------------------------------------------------------------------
+        */
+
+        'secure_assets' => false
     ],
 
     /*
